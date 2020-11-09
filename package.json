@@ -1,0 +1,22 @@
+{
+  "name": "koku-erc20-contracts",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://BuddhikaWimalasena@bitbucket.org/kokudev/koku-erc20-contracts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/kokudev/koku-erc20-contracts#readme",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^3.2.0",
+    "ganache-cli": "^6.12.1",
+    "truffle": "^5.1.52"
+  }
+}
