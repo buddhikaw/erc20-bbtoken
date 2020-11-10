@@ -17,27 +17,27 @@ import "@openzeppelin/contracts/token/ERC20/ERC20Pausable.sol";
  * This contract uses {AccessControl} to lock permissioned functions using the
  * different roles - head to its documentation for details.
  *
- * The account that deploys the contract will be granted the minter and pauser
+ * The contractOwner will be granted the minter and pauser
  * roles, as well as the default admin role, which will let it grant both minter
  * and pauser roles to other accounts.
  */
-contract KokuToken is Context, AccessControl, ERC20Burnable, ERC20Pausable {
+contract ERC20TokenTransferOwnership is Context, AccessControl, ERC20Burnable, ERC20Pausable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
 
     /**
      * @dev Grants `DEFAULT_ADMIN_ROLE`, `MINTER_ROLE` and `PAUSER_ROLE` to the
-     * account that deploys the contract.
+     * contractOwner.
      *
      * See {ERC20-constructor}.
      */
-    constructor(string memory name, string memory symbol) public ERC20(name, symbol) {
+    constructor(string memory name, string memory symbol, address contractOwner) public ERC20(name, symbol) {
         //set 6 decimals
         _setupDecimals(6);
 
-        _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
-        _setupRole(MINTER_ROLE, _msgSender());
-        _setupRole(PAUSER_ROLE, _msgSender());
+        _setupRole(DEFAULT_ADMIN_ROLE, contractOwner);
+        _setupRole(MINTER_ROLE, contractOwner);
+        _setupRole(PAUSER_ROLE, contractOwner);
     }
 
     /**
